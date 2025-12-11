@@ -17,5 +17,6 @@ class BinarySearchTest {
         assertEquals(2,BinarySearch.binarySearchBasic(a,18));
         assertEquals(3,BinarySearch.binarySearchBasic(a,48));
         assertEquals(4,BinarySearch.binarySearchBasic(a,551));
+        assertEquals(4,BinarySearch.binarySearchBasic(a,1254));
     }
 }
