@@ -10,13 +10,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 class BinarySearchTest {
     @Test
-    void testBinarySearchBasic() {
+    void testBinarySearchAlternative() {
         int[] a = {7,12,18,48,551,1254};
-        assertEquals(0, BinarySearch.binarySearchBasic(a,7));
+        assertEquals(0, BinarySearch.binarySearchAlternative(a,7));
         assertEquals(1, BinarySearch.binarySearchBasic(a,12));
         assertEquals(2,BinarySearch.binarySearchBasic(a,18));
         assertEquals(3,BinarySearch.binarySearchBasic(a,48));
         assertEquals(4,BinarySearch.binarySearchBasic(a,551));
-        assertEquals(4,BinarySearch.binarySearchBasic(a,1254));
+        assertEquals(5,BinarySearch.binarySearchBasic(a,125));
     }
 }
