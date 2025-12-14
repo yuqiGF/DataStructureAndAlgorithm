@@ -11,7 +11,7 @@ import java.util.stream.IntStream;
 public class DynamicArray implements Iterable<Integer> {
     private int size = 0; //逻辑大小
     private int capacity = 10; //初始容量
-    private int[] array = new int[capacity]; //初始数组
+    private int[] array = {}; //初始数组  空的  节约内存  懒惰式初始化
 
     /**
      * 添加最后一个元素
@@ -37,6 +37,10 @@ public class DynamicArray implements Iterable<Integer> {
         } else {
             throw new RuntimeException("索引越界");
         }*/
+
+        //数组扩容
+        checkAndGrow();
+
         //⭐优化一下下逻辑
         if (index < 0 || index > size){
             throw new RuntimeException("索引越界");
@@ -47,6 +51,24 @@ public class DynamicArray implements Iterable<Integer> {
         }
         array[index] = element;
         size ++;
+    }
+
+    /**
+     * 扩容机制
+     */
+    private void checkAndGrow() {
+        //检查是不是第一个元素
+        if (size == 0){
+            array = new int[capacity];
+        }
+        //扩容给机制  1.5倍
+        else if (size == capacity){
+            //不能够直接用小数加整数  所以还是用移位操作（防止超过有符号位数的上限） （扩大1.5倍）
+            capacity = capacity + capacity >> 1;  //新容量
+            int[] newArray = new int[capacity];  //新数组
+            System.arraycopy(array,0,newArray,0,size); //性能最好的复制
+            array = newArray;
+        }
     }
 
     /**
@@ -99,10 +121,12 @@ public class DynamicArray implements Iterable<Integer> {
     public int remove(int index){  //假设索引范围有效
         //找到被删除的元素
         int removed = array[index];
-        //将索引位置之后的元素往前移动
-        System.arraycopy(array,index+1,array,index,size-index-1);
+        if (index < size) {
+            //将索引位置之后的元素往前移动
+            System.arraycopy(array,index+1,array,index,size-index-1);
+        }
         //逻辑大小左移
-        size --;
+        size --;  //删最后一个元素的话就直接移动位置即可
         //返回删掉的元素
         return removed;
     }
