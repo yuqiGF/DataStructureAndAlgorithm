@@ -79,4 +79,61 @@ public class BinarySearch {
         //没找到返回-1
         return -1;
     }
+
+    /**
+     * 右侧重复元素查找
+     */
+    public static int binarySearchRightmost1(int[] a, int target){
+        int i = 0, j = a.length - 1; //设置指针和初值
+        int candidate = -1; //候选位置
+        while(i <= j){
+            int m = (i + j) >>> 1;
+            if (a[m] < target){
+                i = m + 1;
+            } else if (target < a[m]) {
+                j = m - 1;
+            }else { //找到了
+                //⭐ 记录候选位置
+                candidate = m;  //继续缩小边界   找最右索引，所以缩小左边界
+                i = m + 1;  //直到循环结束退出
+                return candidate;
+            }
+        }
+        //没找到返回-1
+        return -1;
+    }
+
+    /**
+     * 左侧重复元素查找  没找到的话返回一个更有用的东西  大于等于i的最小索引
+     */
+    public static int binarySearchLeftmost2(int[] a, int target){
+        int i = 0, j = a.length - 1; //设置指针和初值
+        while(i <= j){
+            int m = (i + j) >>> 1;
+            if (a[m] < target){
+                i = m + 1;
+            } else {
+                j = m - 1;
+            }
+        }
+        //没找到返回i
+        return i;   //⭐找到一个比目标大的最小的元素
+    }
+
+    /**
+     * 右侧重复元素查找  返回更有用的东西  小于等于target的最右边的位置
+     */
+    public static int binarySearchRightmost2(int[] a, int target){
+        int i = 0, j = a.length - 1; //设置指针和初值
+        while(i <= j){
+            int m = (i + j) >>> 1;
+            if (a[m] <= target){
+                i = m + 1;
+            } else {
+                j = m - 1;
+            }
+        }
+        //没找到返回i - 1  与目标相等的最右边的或者比目标小的最右侧的
+        return i - 1;
+    }
 }
