@@ -1,4 +1,4 @@
-package com.yuqiqi.algorithm.binarysearch;
+package com.yuqiqi.dataStructure.linkedList;
 
 import java.util.Iterator;
 import java.util.function.Consumer;
@@ -7,7 +7,7 @@ import java.util.function.Consumer;
  * 双向链表  带哨兵 head和tail    （带哨兵的好实现一些 不用频繁的判断是否为空链表）
  * 优点：方便操作尾部
  */
-public class DoubleLinkedLIstSentinel implements Iterable<Integer>{
+public class DoublyLinkedLIstSentinel implements Iterable<Integer>{
     /**
      * 迭代器遍历
      * @return
@@ -51,7 +51,7 @@ public class DoubleLinkedLIstSentinel implements Iterable<Integer>{
     /**
      * 构造方法
      */
-    public DoubleLinkedLIstSentinel(){
+    public DoublyLinkedLIstSentinel(){
         head = new Node(null,666,null);
         tail = new Node(null,888,null);
         head.next = tail;  //头指向尾

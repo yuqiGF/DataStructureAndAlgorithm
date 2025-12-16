@@ -1,4 +1,4 @@
-package com.yuqiqi.algorithm.binarysearch;
+package com.yuqiqi.dataStructure.Array;
 
 import java.util.Arrays;
 import java.util.Iterator;

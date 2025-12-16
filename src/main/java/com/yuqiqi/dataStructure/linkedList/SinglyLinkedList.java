@@ -1,4 +1,4 @@
-package com.yuqiqi.algorithm.binarysearch;
+package com.yuqiqi.dataStructure.linkedList;
 
 import java.util.Iterator;
 import java.util.function.Consumer;

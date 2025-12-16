@@ -1,8 +1,7 @@
 package com.yuqiqi.algorithm.binarysearch;
 
+import com.yuqiqi.dataStructure.linkedList.SinglyLinkedList;
 import org.junit.jupiter.api.Test;
-
-import java.util.Iterator;
 
 class SinglyLinkedListTest {
 
