@@ -130,10 +130,4 @@ public class DynamicArray implements Iterable<Integer> {
         //返回删掉的元素
         return removed;
     }
-
-
-
-
-
-
 }
