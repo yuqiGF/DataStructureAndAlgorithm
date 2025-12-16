@@ -101,7 +101,7 @@ public class SinglyLinkedListSentinel implements Iterable<Integer>{ //单向链�
      */
     private Node findNode(int index){
         int i = -1; //索引的起始位置  哨兵是-1  第一个位置的索引为0
-        for (Node p = head.next; p != null ; p = p.next, i ++){
+        for (Node p = head; p != null ; p = p.next, i ++){
             if (i == index){  //找到了
                 return p;
             }

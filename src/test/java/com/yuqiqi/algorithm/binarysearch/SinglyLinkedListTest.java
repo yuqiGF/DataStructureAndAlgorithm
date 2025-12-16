@@ -39,4 +39,11 @@ class SinglyLinkedListTest {
         System.out.println(list.get(3));
         list.get(19);
     }
+
+    @Test
+    void fool(){
+        for (int i = 0; i < 5; i++) {
+            System.out.println(i);
+        }
+    }
 }
