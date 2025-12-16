@@ -31,7 +31,7 @@ public class DoubleLinkedLIstSentinel implements Iterable<Integer>{
     }
 
     /**
-     * 节点类
+     * 节点类 带上一个元素和下一个元素
      */
     static class Node{
         private Node prev; //指向上一个节点
