@@ -140,6 +140,4 @@ public class DoublyCircularLinkedListSentinel implements Iterable<Integer>{
         }
         return null;
     }
-
-
 }

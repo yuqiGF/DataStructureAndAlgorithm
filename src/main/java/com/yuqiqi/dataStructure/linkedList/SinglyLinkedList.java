@@ -112,6 +112,33 @@ public class SinglyLinkedList implements Iterable<Integer>{ //单向链表整体
     }
 
     /**
+     * ⭐递归遍历
+     */
+    public void loop3(Consumer<Integer> before,Consumer<Integer> after){
+        recursion(head,before,after);  //从头开始遍历
+    }
+
+    /**
+     * 递归函数  ⭐AOP的实现原理类似
+     *
+     * @param current 开始遍历的位置
+     * @param before ⭐前置通知
+     * @param after  ⭐后置通知
+     */
+    private void recursion(Node current, Consumer<Integer> before, Consumer<Integer> after){  //递归时对每个节点要执行的操作
+        //递归的终止条件
+        if (current == null){
+            return;
+        }
+//        System.out.println("before" + current.value);  //前置通知 1234
+        before.accept(current.value);
+
+        recursion(current.next, before, after);  //调用自己 传入下一个节点
+//        System.out.println("after" + current.value);  //后置通知 4321
+        after.accept(current.value);
+     }
+
+    /**
      * 根据索引查找节点   因为链表本身没有索引 所以索引要自己在遍历的时候设置
      */
     private Node findNode(int index){
