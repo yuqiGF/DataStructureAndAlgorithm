@@ -50,17 +50,17 @@ public class SinglyLinkedList implements Iterable<Integer>{ //单向链表整体
     }
 
     /**
-     * 从头插入元素 头插
+     * 从头插入元素 头插   插入head后面
      */
     public void addFirst(int value){
         //链表为空
-//        head = new Node(value,null);   //这里的head不是哨兵
-        //链表非空    head指向我  我指向head原来指向的东西     ///head就是我  我指向head原本指向的东西
+//        head = new Node(value,null);   //这里的head不是哨兵  新节点指向head 然后自己变为新的dead
+        //链表非空
         head = new Node(value, head);  //可以覆盖掉链表为空的情况
     }
 
     /**
-     * 从尾部添加  尾插
+     * 从尾部添加  尾插   插入last前面
      */
     public void addLast(int value){
         //找最后一个节点
