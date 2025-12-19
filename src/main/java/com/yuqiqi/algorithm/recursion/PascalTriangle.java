@@ -50,7 +50,9 @@ public class PascalTriangle {
     }
 
 
-    //记忆化优化  n^2
+    /**
+     *  ⭐记忆化优化  二维数组  n^2
+     */
     //递归过程
     public static int element1(int[][] a, int i, int j){
         //判断是否已经计算过了
@@ -81,8 +83,46 @@ public class PascalTriangle {
         }
     }
 
+    /**
+     * 记忆化优化  一维数组优化    ⭐动态规划思想  把递归优化出去了
+     * @param i 第几行
+     * 0 0 0 0 0 0   初始状态
+     * 1 0 0 0 0 0   i = 0
+     * 1 1 0 0 0 0
+     * 1 2 1 0 0 0
+     * 1 3 3 1 0 0
+     * 1 4 6 4 1 0
+     */
+    //生成每一行的数据
+    public static void createRow(int[] row , int i){
+        if (i == 0){  //第0行
+            row[0] = 1;
+            return;
+        }
+        //变到下一行时从右到左依次两两相加后赋值即可
+        for (int j = i; j > 0 ; j --) {
+            row[j] = row[j] + row[j - 1];  //新一位的数等于本位的数加上上一位的数
+        }
+    }
+
+    /**
+     * 打印
+     * @param n 高度
+     */
+    public static void print2(int n){
+        int[] row = new int[n]; // 高度即为一维数组中最后一个数所在的索引
+        for (int i = 0; i < n; i++) {
+            printSpace(n,i); //打印空格
+            createRow(row,i); //⭐更新每一行的元素
+            for (int j = 0 ; j <= i;  j ++) {
+                System.out.printf("%-4d",row[j]);
+            }
+            System.out.println();
+        }
+    }
+
 
     public static void main(String[] args) {
-        print1(10);
+        print2(10);
     }
 }

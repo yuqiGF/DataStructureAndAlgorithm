@@ -1,6 +1,6 @@
 package com.yuqiqi.algorithm.recursion;
 
-public class test {
+public class PascalTriangleTest {
     //练习一下杨辉三角
 
     /**
