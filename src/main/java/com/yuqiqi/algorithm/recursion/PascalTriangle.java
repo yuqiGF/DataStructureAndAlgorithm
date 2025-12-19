@@ -9,7 +9,7 @@ import java.util.jar.JarEntry;
 public class PascalTriangle {
 
     /**
-     * ⭐求杨辉三角i行j列的值
+     * ⭐求杨辉三角i行j列的值   2^n
      * @param i 行
      * @param j 列
      * @return 结果
@@ -50,12 +50,14 @@ public class PascalTriangle {
     }
 
 
-    //记忆化优化
+    //记忆化优化  n^2
+    //递归过程
     public static int element1(int[][] a, int i, int j){
         //判断是否已经计算过了
         if (a[i][j] != 0){
             return a[i][j];  //计算过了就直接返回
         }
+        //没计算过的话就存入数组
         if (j == 0|| i == j){
             //存入计算结果过
             a[i][j] = 1;
@@ -66,6 +68,7 @@ public class PascalTriangle {
         return a[i][j];
     }
 
+    //打印过程
     public static void print1(int n){
         int[][] a = new int[n][];  //行数就是高度n
         for (int i = 0; i < n; i++) {  //行
@@ -76,7 +79,6 @@ public class PascalTriangle {
             }
             System.out.println();
         }
-
     }
 
 
