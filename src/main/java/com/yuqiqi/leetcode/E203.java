@@ -32,4 +32,22 @@ public class E203 {
         }
         return sentinel.next; //返回头节点
     }
+
+    /**
+     * 方法二 递归
+     */
+    public ListNode solution2(ListNode p, int val){
+        if (p == null){
+            return null;
+        }
+        //若当前的值与val相等 则返回下一个递归结果
+        if (p.val == val){
+            return solution2(p.next,val);
+        }
+        //若不相等 则返回自己  并且带上后续next节点
+        else{
+            p.next = solution2(p.next,val);  //更新next节点
+            return p;
+        }
+    }
 }
