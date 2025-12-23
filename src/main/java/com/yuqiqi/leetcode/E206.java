@@ -1,20 +1,11 @@
 package com.yuqiqi.leetcode;
 
+import com.yuqiqi.bean.ListNode;
+
 /**
  * 给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。
  */
 public class E206 {
-
-    /**
-     * 节点类定义
-     */
-      public class ListNode {
-          int val;
-          ListNode next;
-          ListNode() {}
-          ListNode(int val) { this.val = val; }
-          ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-      }
     /**
      * 方法一  直接按照顺序遍历 然后头插
      */
