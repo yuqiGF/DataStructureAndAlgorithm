@@ -1,9 +1,9 @@
-package com.yuqiqi.leetcode;
+package com.yuqiqi.leetcode.linkedList;
 
 import com.yuqiqi.bean.ListNode;
 
 /**
- * 合并多个升序链表   会两个就一定会多个  两两合并即可  （归并 分治）   ⭐ 二分到两边相等的时候就取出来
+ * 合并多个升序链表   会两个就一定会多个  两两合并即可  （归并 分治 分 治 合）   ⭐ 二分到两边相等的时候就取出来
  */
 public class E23 {
     /**

@@ -1,7 +1,5 @@
 package com.yuqiqi.bean;
 
-import com.yuqiqi.leetcode.E206;
-
 /**
  * leetcode链表节点类
  */
