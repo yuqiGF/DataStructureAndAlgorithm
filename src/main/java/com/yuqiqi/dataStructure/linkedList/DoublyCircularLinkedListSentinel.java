@@ -48,7 +48,7 @@ public class DoublyCircularLinkedListSentinel implements Iterable<Integer>{
     /**
      * 哨兵 头尾都指向自己
      */
-    private Node sentinel = new Node(null , -1,null);
+    private final Node sentinel = new Node(null , -1,null);
 
     /**
      * 无参构造
