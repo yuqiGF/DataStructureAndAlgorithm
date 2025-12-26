@@ -14,6 +14,7 @@ public class ArrayQueue1<E> implements Queue<E>,Iterable<E> {
     private int head = 0; //头指针
     private int tail = 0; //尾指针
 
+    //构造器  容量在构造的时候指定
     @SuppressWarnings("all") //⭐抑制警告产生的注解
     public ArrayQueue1(int capacity) {  //传入期望的容量
         array = (E[]) new Object[capacity + 1]; //因为需要空出一个地方来判断是否为满，所以要创建期望容量+1的数组
@@ -37,7 +38,7 @@ public class ArrayQueue1<E> implements Queue<E>,Iterable<E> {
         }
         //从头部移除，移除后头指针后移即可
         E polled = array[head];
-        array[head] = null; //删除掉原本的元素 避免内存泄漏
+        array[head] = null; //⭐删除掉原本的元素 避免内存泄漏
         head = (head + 1) % array.length; //head后移   不移动tail的原因是避免移动元素导致的复杂度
         return polled;
     }
