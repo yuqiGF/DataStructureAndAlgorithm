@@ -18,9 +18,9 @@ public class LinkedListStack<E> implements Stack<E>,Iterable<E>{
     }
 
     //初始化属性
-    private int capacity;  //栈的容量
+    private final int capacity;  //栈的容量
     private int size; //栈中元素的个数
-    private Node<E> head = new Node(null,null); //头指针  哨兵
+    private final Node<E> head = new Node<>(null,null); //头指针  哨兵
 
     //构造方法初始化
     public LinkedListStack(int capacity) {
