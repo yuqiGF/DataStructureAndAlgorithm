@@ -2,6 +2,8 @@ package com.yuqiqi.leetcode.stack;
 
 import com.yuqiqi.dataStructure.stack.LinkedListStack;
 
+import java.util.LinkedList;
+
 /**
  * ⭐有效的括号   给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串 s ，判断字符串是否有效。
  * 有效字符串需满足：
@@ -14,6 +16,7 @@ public class E20 {
      * 遍历
      * ⭐如果遇到左括号，那么就需要把对应的右括号放入栈内
      * ⭐如果遇到右括号，就和栈顶对比，一样就出栈，不一样就接着入栈
+     * ⭐ java中linkedList也可以当作栈来使用 当然也有现成的Stack用
      */
 
     public boolean isValid(String s) {
