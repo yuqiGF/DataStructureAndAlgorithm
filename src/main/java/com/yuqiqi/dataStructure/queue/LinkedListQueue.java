@@ -50,7 +50,7 @@ public class LinkedListQueue<E> implements Queue<E> , Iterable<E> {
         tail.next = added; //尾节点后面插入新节点
         tail = added; //尾节点更新为新增的节点
         size ++; //节点数增加
-        return true; // TODO
+        return true;
     }
 
     @Override
