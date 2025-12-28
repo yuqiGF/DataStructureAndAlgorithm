@@ -5,7 +5,7 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * 阻塞队列   -单锁实现
+ * 阻塞队列   -单锁实现 出队入队公用一把锁     此时出队回影响入队
  */
 public class BlockingQueue1<E> implements BlockingQueue<E> {
 
