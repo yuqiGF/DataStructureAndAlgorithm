@@ -1,6 +1,6 @@
 package com.yuqiqi.leetcode.linkedList;
 
-import com.yuqiqi.bean.ListNode;
+import com.yuqiqi.leetcode.bean.ListNode;
 
 /**
  * 查找链表的中间节点  给你单链表的头结点 head ，请你找出并返回链表的中间结点。

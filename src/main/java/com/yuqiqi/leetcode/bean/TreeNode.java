@@ -1,4 +1,4 @@
-package com.yuqiqi.bean;
+package com.yuqiqi.leetcode.bean;
 
 /**
  * 二叉树节点

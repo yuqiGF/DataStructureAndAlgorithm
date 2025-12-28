@@ -1,6 +1,6 @@
 package com.yuqiqi.leetcode.linkedList;
 
-import com.yuqiqi.bean.ListNode;
+import com.yuqiqi.leetcode.bean.ListNode;
 
 /**
  * 删除到数第n个节点  ⭐递归计数！

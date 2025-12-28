@@ -1,9 +1,8 @@
 package com.yuqiqi.leetcode.queue.deque;
 
-import com.yuqiqi.bean.TreeNode;
+import com.yuqiqi.leetcode.bean.TreeNode;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 

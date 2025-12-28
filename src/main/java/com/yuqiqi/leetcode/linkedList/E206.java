@@ -1,6 +1,6 @@
 package com.yuqiqi.leetcode.linkedList;
 
-import com.yuqiqi.bean.ListNode;
+import com.yuqiqi.leetcode.bean.ListNode;
 
 /**
  * 给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。

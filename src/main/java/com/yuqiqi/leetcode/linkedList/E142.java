@@ -1,6 +1,6 @@
 package com.yuqiqi.leetcode.linkedList;
 
-import com.yuqiqi.bean.ListNode;
+import com.yuqiqi.leetcode.bean.ListNode;
 
 /**
  * ⭐检测链表环的入口 给定一个链表的头节点  head ，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。

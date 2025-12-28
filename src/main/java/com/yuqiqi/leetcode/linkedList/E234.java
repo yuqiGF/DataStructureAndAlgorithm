@@ -1,6 +1,6 @@
 package com.yuqiqi.leetcode.linkedList;
 
-import com.yuqiqi.bean.ListNode;
+import com.yuqiqi.leetcode.bean.ListNode;
 
 /**
  * 回文链表   给你一个单链表的头节点 head ，请你判断该链表是否为回文链表。如果是，返回 true ；否则，返回 false 。

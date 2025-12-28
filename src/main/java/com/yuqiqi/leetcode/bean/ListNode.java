@@ -1,4 +1,4 @@
-package com.yuqiqi.bean;
+package com.yuqiqi.leetcode.bean;
 
 /**
  * leetcode链表节点类
