@@ -1,4 +1,4 @@
-package com.yuqiqi.dataStructure.queue;
+package com.yuqiqi.dataStructure.queue.simple;
 
 /**
  * 自定义队列接口 （java字带的Queue接口方法太多了，所以重新写一个来实现）  未来要用链表和数组分别实现

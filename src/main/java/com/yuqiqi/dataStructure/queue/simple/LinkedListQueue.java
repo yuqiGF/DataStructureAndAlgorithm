@@ -1,7 +1,6 @@
-package com.yuqiqi.dataStructure.queue;
+package com.yuqiqi.dataStructure.queue.simple;
 
 import java.util.Iterator;
-import java.util.LinkedList;
 
 /**
  * 链表实现队列  单向环形带哨兵的链表

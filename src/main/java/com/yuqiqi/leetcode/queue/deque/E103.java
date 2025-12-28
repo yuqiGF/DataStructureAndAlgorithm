@@ -1,4 +1,4 @@
-package com.yuqiqi.leetcode.deque;
+package com.yuqiqi.leetcode.queue.deque;
 
 import com.yuqiqi.bean.TreeNode;
 

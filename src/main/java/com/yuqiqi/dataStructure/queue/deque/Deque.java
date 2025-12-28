@@ -1,4 +1,4 @@
-package com.yuqiqi.dataStructure.deque;
+package com.yuqiqi.dataStructure.queue.deque;
 
 /**
  * 双端队列    两边都能进出的队列

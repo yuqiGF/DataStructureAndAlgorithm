@@ -1,4 +1,4 @@
-package com.yuqiqi.dataStructure.queue;
+package com.yuqiqi.dataStructure.queue.simple;
 
 import java.util.Iterator;
 

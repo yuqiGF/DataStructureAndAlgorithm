@@ -1,6 +1,5 @@
-package com.yuqiqi.dataStructure.deque;
+package com.yuqiqi.dataStructure.queue.deque;
 
-import javax.swing.plaf.basic.BasicArrowButton;
 import java.util.Iterator;
 
 /**

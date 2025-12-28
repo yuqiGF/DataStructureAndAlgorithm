@@ -1,7 +1,6 @@
-package com.yuqiqi.dataStructure.deque;
+package com.yuqiqi.dataStructure.queue.deque;
 
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 
 /**
  * 链表实现双端队列     双向带哨兵环形链表实现双端队列 （关键是找到正确的位置）
