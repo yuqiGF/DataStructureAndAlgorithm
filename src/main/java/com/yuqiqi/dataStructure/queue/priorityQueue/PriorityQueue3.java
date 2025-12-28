@@ -2,19 +2,17 @@ package com.yuqiqi.dataStructure.queue.priorityQueue;
 
 import com.yuqiqi.dataStructure.queue.simple.Queue;
 
-import java.text.BreakIterator;
-
 /**
  * ⭐大顶堆实现优先级队列     大顶堆：根节点总是大于子节点的完全二叉树    父找子：左2i+1 右2i+2  子找父（i - 1）/2 向下取整
  * 虽然是非线性的数据结构  但是可以用线性的数组去存   加的时候要从左到右依次填满
  */
-public class PriorityQueue4<E extends Priority> implements Queue<E> {
+public class PriorityQueue3<E extends Priority> implements Queue<E> {
     //初始化数组
     Priority[] array;
     int size;
 
     //构造器 指定数组容量
-    public PriorityQueue4(int capacity){
+    public PriorityQueue3(int capacity){
         array = new Priority[capacity];
     }
 
