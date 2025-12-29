@@ -4,10 +4,12 @@ package com.yuqiqi.dataStructure.heap;
  * 大顶堆   在优先级队列的第三实现那里写过  就是一个根节点总是大于左右两节点的完全二叉树
  * 堆完全可以用一个线性的数组来表示  ⭐父节点=（子节点-1）/2 向下取整   左子节点 = 2*父节点+1  右子节点 = 2*父节点 + 2
  * ⭐重点是上浮  下潜  建堆
+ *
+ * 小顶堆与之同理  只不过是根节点永远小与两个子节点而已  变一下符号稍微改改就行
  */
 public class MaxHeap {
-    int[] array;  //初始数组
-    int size;
+    public int[] array;  //初始数组
+    public int size;
 
     public MaxHeap(int capacity){
         array = new int[capacity];
@@ -117,7 +119,7 @@ public class MaxHeap {
      * 下潜  父节点元素和两个子节点中较大的那个交换  直到没有父节点或者没有比自己大的子节点为止
      * @param parent 待下潜的元素的索引位置
      */
-    private void down(int parent){
+    public void down(int parent){
         int left = parent * 2 + 1;  //套公式计算左右节点索引
         int right = left + 1;
         int max = parent; //先假设最大索引就是父节点parent
@@ -136,7 +138,7 @@ public class MaxHeap {
     /**
      * 交换两个位置的元素
      */
-    private void swap(int i, int j) {
+    public void swap(int i, int j) {
         int temp = array[i];
         array[i] = array[j];
         array[j] = temp;
