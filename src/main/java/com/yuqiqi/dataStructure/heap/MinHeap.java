@@ -2,6 +2,7 @@ package com.yuqiqi.dataStructure.heap;
 
 /**
  * 小顶堆  和大顶堆的原理完全一样   只不过用的是根节点总比左右子节点都小的完全二叉树
+ * jdk中的优先级队列默认就是小顶堆  可以直接使用
  */
 public class MinHeap {
     public int[] array;  //初始数组
