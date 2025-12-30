@@ -2,7 +2,6 @@ package com.yuqiqi.leetcode.binaryTree;
 
 import com.yuqiqi.dataStructure.binaryTree.TreeNode;
 
-import java.lang.runtime.TemplateRuntime;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;

@@ -29,7 +29,7 @@ public class E144 {
     }
 
     /**
-     * 迭代法   ⭐用栈来存储遍历数据
+     * 迭代法（非统一写法）   ⭐用栈来存储遍历数据
      */
     public List<Integer> preorderTraversal2(TreeNode root){
         //初始化栈
