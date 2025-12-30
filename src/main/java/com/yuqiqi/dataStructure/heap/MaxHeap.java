@@ -82,8 +82,13 @@ public class MaxHeap {
      * 堆尾部添加元素
      */
     public boolean offer(int offered){
+        //动态扩容  （和数组类似）
         if (isFull()){
-            return false; //满的
+            int capacity = size + (size >> 1); //扩容为原来的1.5倍
+            int[] newArray = new int[capacity];
+            //将原本数组中的数据拷贝到新的数组中
+            System.arraycopy(array,0,newArray,0,size);
+            this.array = newArray; //更新旧数组
         }
         up(offered); //堆尾上浮
         size ++;

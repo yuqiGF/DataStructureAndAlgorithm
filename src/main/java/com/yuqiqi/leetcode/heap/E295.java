@@ -47,7 +47,5 @@ public class E295 {
         }else { //元素个数相同的话求中间两个数的平均值
             return (double) (left.peek() + right.peek()) /2;
         }
-
     }
-
 }
