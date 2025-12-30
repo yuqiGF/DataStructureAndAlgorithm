@@ -1,4 +1,4 @@
-package com.yuqiqi.leetcode.bean;
+package com.yuqiqi.dataStructure.binaryTree;
 
 /**
  * 二叉树节点
@@ -17,5 +17,4 @@ public class TreeNode {
         this.left = left;
         this.right = right;
     }
-
 }
