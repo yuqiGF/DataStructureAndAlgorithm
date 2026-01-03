@@ -1,9 +1,9 @@
-package com.yuqiqi.leetcode.binaryTree;
+package com.yuqiqi.leetcode.tree.binaryTree;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import com.yuqiqi.dataStructure.binaryTree.TreeNode;
+import com.yuqiqi.dataStructure.tree.TreeNode;
 
 /**
  * 二叉树前序遍历

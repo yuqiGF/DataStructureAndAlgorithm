@@ -1,4 +1,4 @@
-package com.yuqiqi.dataStructure.binaryTree;
+package com.yuqiqi.dataStructure.tree;
 
 /**
  * 二叉树节点

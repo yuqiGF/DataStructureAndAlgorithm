@@ -1,7 +1,8 @@
-package com.yuqiqi.dataStructure.binaryTree;
+package com.yuqiqi.dataStructure.tree.binaryTree;
+
+import com.yuqiqi.dataStructure.tree.TreeNode;
 
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * ⭐树的遍历  （迭代实现）

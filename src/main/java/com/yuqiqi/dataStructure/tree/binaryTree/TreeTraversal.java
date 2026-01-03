@@ -1,4 +1,6 @@
-package com.yuqiqi.dataStructure.binaryTree;
+package com.yuqiqi.dataStructure.tree.binaryTree;
+
+import com.yuqiqi.dataStructure.tree.TreeNode;
 
 /**
  * ⭐树的遍历  （递归实现）

@@ -1,4 +1,4 @@
-package com.yuqiqi.leetcode.binaryTree;
+package com.yuqiqi.leetcode.tree.binaryTree;
 
 import java.util.LinkedList;
 

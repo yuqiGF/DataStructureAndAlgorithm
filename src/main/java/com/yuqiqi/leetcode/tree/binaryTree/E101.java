@@ -1,9 +1,6 @@
-package com.yuqiqi.leetcode.binaryTree;
+package com.yuqiqi.leetcode.tree.binaryTree;
 
-import com.sun.source.tree.Tree;
-import com.yuqiqi.dataStructure.binaryTree.TreeNode;
-
-import java.util.LinkedList;
+import com.yuqiqi.dataStructure.tree.TreeNode;
 
 /**
  * 对称二叉树  递归  传入的时连个节点
