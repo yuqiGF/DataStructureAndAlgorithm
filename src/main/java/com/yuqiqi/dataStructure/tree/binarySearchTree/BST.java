@@ -1,6 +1,8 @@
 package com.yuqiqi.dataStructure.tree.binarySearchTree;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Binary Search Tree 二叉搜索树  普通的树节点上新增一个key属性（不能重复） 用来比较大小  ⭐类比MAP
@@ -413,5 +415,74 @@ public class BST<K extends Comparable<K>,V> {    //⭐这种写法是泛型的�
         s.right = doDelete(node.right,s.key,new ArrayList<>());  //这里不能和外面用的一样
         s.left = node.left;//记得把左边连上
         return s;  //返回值是删完后剩下的
+    }
+
+    /**
+     * 范围查询   思路 因为二叉搜索树的中序遍历就是排好序的结果
+     */
+    public List<V> less(K key){
+        ArrayList<V> result = new ArrayList<>();
+        BSTNode<K,V> p = root;
+        LinkedList<BSTNode<K, V>> stack = new LinkedList<>(); //栈记录遍历的元素
+        while (p != null || !stack.isEmpty()){
+            if (p != null){
+                stack.push(p);
+                p = p.left;
+            }else {
+                BSTNode<K, V> pop = stack.pop();
+                //处理值   这里的输出是中序遍历的结果
+                if (pop.key.compareTo(key) < 0){
+                    result.add(pop.value);
+                }else {
+                    break;
+                }
+                p = pop.right;
+            }
+        }
+        return result;
+    }
+
+    public List<V> greater(K key){
+        ArrayList<V> result = new ArrayList<>();
+        BSTNode<K,V> p = root;
+        LinkedList<BSTNode<K, V>> stack = new LinkedList<>(); //栈记录遍历的元素
+        while (p != null || !stack.isEmpty()){
+            if (p != null){
+                stack.push(p);
+                p = p.left;
+            }else {
+                BSTNode<K, V> pop = stack.pop();
+                //处理值
+                if (pop.key.compareTo(key) > 0){
+                    result.add(pop.value);
+                }else {
+                    break;
+                }
+                p = pop.right;
+            }
+        }
+        return result;
+    }
+
+    public List<V> between(K key1,K key2){
+        ArrayList<V> result = new ArrayList<>();
+        BSTNode<K,V> p = root;
+        LinkedList<BSTNode<K, V>> stack = new LinkedList<>(); //栈记录遍历的元素
+        while (p != null || !stack.isEmpty()){
+            if (p != null){
+                stack.push(p);
+                p = p.left;
+            }else {
+                BSTNode<K, V> pop = stack.pop();
+                //处理值
+                if (pop.key.compareTo(key1) >= 0 && pop.key.compareTo(key2) <= 0){
+                    result.add(pop.value);
+                }else if (pop.key.compareTo(key2) > 0){
+                    break;
+                }
+                p = pop.right;
+            }
+        }
+        return result;
     }
 }
