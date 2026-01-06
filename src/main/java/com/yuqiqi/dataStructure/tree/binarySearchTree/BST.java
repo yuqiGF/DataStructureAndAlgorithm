@@ -1,5 +1,7 @@
 package com.yuqiqi.dataStructure.tree.binarySearchTree;
 
+import java.util.ArrayList;
+
 /**
  * Binary Search Tree 二叉搜索树  普通的树节点上新增一个key属性（不能重复） 用来比较大小  ⭐类比MAP
  * 根节点的左边的节点的值一定比根节点小  根节点右边的值一定比根节点大
@@ -333,16 +335,16 @@ public class BST<K extends Comparable<K>,V> {    //⭐这种写法是泛型的�
                 s = s.left;
             }
 
-            //当删除的节点和其后继节点不相邻的时候  需要处理后继节点的后事  将后继节点的子节点托孤给后继节点的父节点
+            //当删除的节点和其后继节点不相邻的时候  需要处理后继节点的后事（后继节点s可能会有右子树什么的）  将后继节点的子节点托孤给后继节点的父节点
             //⭐这里的s节点以及和树断连了
             if (sParent != p){
-                shift(sParent,s,s.right);  //不可能有左孩子
-                s.right = p.right;  //改变被s节点的指针
+                shift(sParent,s,s.right);  //不可能有左孩子  ⭐s的后代托孤给sp
+                s.right = p.right;  //改变s节点的指针  重新连回来
             }
 
             //后继节点取代被删除的节点  将s重新连上
             shift(parent,p,s);
-            s.left = p.left;  //把s的左指针也重新连上
+            s.left = p.left;  //把s的左指针也重新连上 （这里右边就字带上了）
         }
         return p.value; //返回被删除节点的value值
     }
@@ -361,5 +363,55 @@ public class BST<K extends Comparable<K>,V> {    //⭐这种写法是泛型的�
         }else{
             parent.right = child;
         }
+    }
+
+    /**
+     * 删除节点  递归实现   关键是把被删除节点从树中断开
+     */
+    public V delete2(K key){
+        ArrayList<V> result = new ArrayList<>(); //保存被删除的节点的值   //注意  java是严格的值传递  想要改变内容的话得传“引用的值”
+        root = doDelete(root,key,result);
+        return result.isEmpty() ? null : result.getFirst();
+    }
+
+    /**
+     * 递归操作
+     * @param key 被删除元素的键
+     * @param node 从哪里开始删除
+     * @return 删除完之后剩下的⭐
+     */
+    private BSTNode<K,V> doDelete(BSTNode<K,V> node , K key , ArrayList<V> result){   //⭐注意 返回值是删除完之后剩下的
+        if (node == null){
+            return null;
+        }
+        //开始查找
+        if (key.compareTo(node.key) < 0){
+            node.left = doDelete(node.left,key,result);  //向左递归 顺便把结果交给其“父“节点了  相比非递归省去了托孤操作
+            return node;  //记得返回
+        }
+        if (key.compareTo(node.key) > 0){
+            node.right = doDelete(node.right,key,result); //向右递归
+            return node;
+        }
+        //找到了  此时node就是要被删的
+        result.add(node.value);  //记录
+        //1、左孩子为空
+        if (node.left == null){
+            return node.right;  //⭐返回值是删完后剩下的
+        }
+        //2、右孩子为空
+        if (node.right == null){
+            return node.left;
+        }
+        //3、有两个孩子
+        //找node的后继节点  （右子树中的最小值）
+        BSTNode<K,V> s = node.right;
+        while (s.left != null){
+            s = s.left;
+        }
+        //记得在后继节点不相邻的情况下处理后继节点的后事  ⭐以右节点为根 删s节点即可
+        s.right = doDelete(node.right,s.key,new ArrayList<>());  //这里不能和外面用的一样
+        s.left = node.left;//记得把左边连上
+        return s;  //返回值是删完后剩下的
     }
 }
