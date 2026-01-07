@@ -183,7 +183,7 @@ public class BST<K extends Comparable<K>,V> {    //⭐这种写法是泛型的�
     }
 
     /**
-     * 插入元素  （只在树的末尾插入）   如果树里有的话 直接修改值   如果没有的话 创建新的树节点
+     * 插入元素  （只在树的末尾插入  添加元素一定是作为叶子节点的）   如果树里有的话 直接修改值   如果没有的话 创建新的树节点
      * @param key 插入的键（位置）
      * @param value 插入的值
      */
@@ -442,7 +442,7 @@ public class BST<K extends Comparable<K>,V> {    //⭐这种写法是泛型的�
         return result;
     }
 
-    public List<V> greater(K key){
+    public List<V> greater(K key){    //这个用反向中序遍历更好 （右值左的遍历方式）
         ArrayList<V> result = new ArrayList<>();
         BSTNode<K,V> p = root;
         LinkedList<BSTNode<K, V>> stack = new LinkedList<>(); //栈记录遍历的元素
