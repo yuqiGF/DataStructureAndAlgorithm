@@ -64,7 +64,7 @@ public class E98 {
     }
 
     /**
-     * 解法三  上下界    给每个节点指定上下界  然后递归操作即可
+     * 解法三  ⭐上下界递归    给每个节点指定上下界  然后递归操作即可
      */
     public boolean doValid(TreeNode node , long min , long max){
         if (node == null){
