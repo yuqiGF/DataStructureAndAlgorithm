@@ -1,7 +1,5 @@
 package com.yuqiqi.dataStructure.tree.redBlackTree;
 
-import java.awt.event.WindowStateListener;
-
 /**
  * 红黑树  一种自平衡的二叉搜索树    相较于AVL树  红黑树插入和删除时需要更少次数的旋转操作
  * 特性：
@@ -244,4 +242,91 @@ public class RedBlackTree {
             leftRotate(grandparent);
         }
     }
+
+    /**
+     * 删除节点   李代桃僵 处理黑黑不平衡
+     */
+    public void remove(int key){
+        Node deleted = find(key);
+        if (deleted == null){
+            return;
+        }
+        //找到了
+        doRemove(deleted,key);
+    }
+
+    /**
+     * 递归删除   同样是四种情况  没孩子  一个孩子（左/右）  俩孩子
+     */
+    private void doRemove(Node deleted, int key) {
+        Node replaced = findReplace(deleted);
+        if (replaced == null){ //没有孩子
+            if (deleted == root){  //case1 删的是根节
+                root = null;     //直接变为null清空树即可
+            }
+
+
+            return;
+        }
+        if (deleted.left == null || deleted.right == null){  //有一个孩子
+            if (deleted == root){  //case1 删除的是根  ⭐此时只可能是只有两个节点的情况  不然就不平衡了
+                root.key = replaced.key; //此时让被替换的那个节点当根节点
+                root.value = replaced.value;  //⭐注意java的值传递机制限制
+                root.left = root.right = null;  //清空左右节点  只剩下根了
+            }
+
+
+            return;
+        }
+        //有两个孩子
+        // ⭐⭐⭐李代桃僵   让待删除节点的键和值与其后继节点替换  然后要删的元素就变成了其后继节点 （只可能没有孩子或者只有任意一棵子树）
+        //极大的简化啊！！！！   ⭐注意 java的值传递机制  不能直接替换node  但是可以替换里面的元素
+        int k = deleted.key;
+        deleted.key = replaced.key;
+        replaced.key = k;
+
+        Object v = deleted.value;
+        deleted.value = replaced.value;
+        replaced.value = v;
+        //替换完之后 要删的就变成了它的后继replaced了
+        doRemove(replaced,key);
+    }
+
+    /**
+     * 查找删除的节点
+     */
+    private Node find(int key){
+        Node p = root;
+        while(p != null){
+            if (key < p.key){
+                p = p.left;
+            }else if (key > p.key){
+                p = p.right;
+            }else {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 查找删剩下的孩子节点
+     */
+    private Node findReplace(Node deleted){
+        if (deleted.left == null && deleted.right == null){
+            return null;
+        }else if (deleted.left == null){
+            return deleted.right;
+        }else if (deleted.right == null){
+            return deleted.left;
+        }else {  //左右都不为空
+            //找后继
+            Node s = deleted.right;
+            while(s.left != null){
+                s = s.left;
+            }
+            return s;  //返回后继节点  为⭐李代桃僵替换方法做准备
+        }
+    }
+
 }
