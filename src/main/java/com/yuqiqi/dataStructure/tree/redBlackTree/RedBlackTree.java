@@ -1,5 +1,8 @@
 package com.yuqiqi.dataStructure.tree.redBlackTree;
 
+import javax.swing.*;
+import java.util.TreeMap;
+
 /**
  * 红黑树  一种自平衡的二叉搜索树    相较于AVL树  红黑树插入和删除时需要更少次数的旋转操作
  * 特性：
@@ -256,26 +259,56 @@ public class RedBlackTree {
     }
 
     /**
-     * 递归删除   同样是四种情况  没孩子  一个孩子（左/右）  俩孩子
+     * 递归删除   同样是四种情况  没孩子  一个孩子（左/右）  俩孩子     ⭐删掉黑色节点需要考虑失衡   删掉红色节点则不需要考虑
      */
     private void doRemove(Node deleted, int key) {
         Node replaced = findReplace(deleted);
-        if (replaced == null){ //没有孩子
-            if (deleted == root){  //case1 删的是根节
+        Node parent = deleted.parent;
+        //⭐没有孩子
+        if (replaced == null){
+            if (deleted == root){  //⭐case1 删的是根节
                 root = null;     //直接变为null清空树即可
+            }else{ //⭐case2 删除的不是根节点 且没有孩子  直接删掉
+                //先平衡
+                if (isBlack(deleted)){
+                    // 删黑色 复杂处理
+                    fixDoubleBlack(deleted);   //⭐先调整平衡  然后再删掉  调的是deleted
+                }else {
+                    // 红色叶子 无需处理
+                }
+                //再删掉
+                if (deleted.isLeftChild()){
+                    parent.left = null;
+                }else {
+                    parent.right = null;
+                }
+                deleted.parent = null; //删除的节点的父节点置空  方便垃圾回收
             }
-
-
             return;
         }
-        if (deleted.left == null || deleted.right == null){  //有一个孩子
+        //⭐有一个孩子
+        if (deleted.left == null || deleted.right == null){
             if (deleted == root){  //case1 删除的是根  ⭐此时只可能是只有两个节点的情况  不然就不平衡了
                 root.key = replaced.key; //此时让被替换的那个节点当根节点
                 root.value = replaced.value;  //⭐注意java的值传递机制限制
                 root.left = root.right = null;  //清空左右节点  只剩下根了
+            }else {  //⭐case3 删除的不是根节点  且有孩子
+                if (parent.isLeftChild()){
+                    parent.left = replaced;
+                }else {
+                    parent.right = replaced;
+                }
+                replaced.parent = parent;  //属性是双向的  记得指回来
+                deleted.right = deleted.parent = deleted.left = null;
+                //⭐先删掉 再平衡
+                if (isBlack(deleted) && isBlack(replaced)){
+                    //删黑色且剩下黑色   复杂处理
+                    fixDoubleBlack(replaced);  //⭐先删掉 再调整平衡  调的是替换上来的删剩下的
+                }else {
+                    //删黑色且剩下红色  直接变色
+                    replaced.color = Color.BLACK;
+                }
             }
-
-
             return;
         }
         //有两个孩子
@@ -290,6 +323,71 @@ public class RedBlackTree {
         replaced.value = v;
         //替换完之后 要删的就变成了它的后继replaced了
         doRemove(replaced,key);
+    }
+
+    /**
+     * ⭐处理删完之后剩下双黑的情况   删除节点和剩下的节点都是黑色的   双黑意思是因为删了一个黑节点 导致整体少了一个黑节点且无法轻易补全
+     */
+    private void fixDoubleBlack(Node x){
+        if (x == root){
+            return; //结束调整
+        }
+        Node parent = x.parent;
+        Node sibling = x.sibling();
+        //case1 兄弟节点是红色  此时俩侄子一定是黑色
+        if (isRed(sibling)){
+            if (x.isLeftChild()){
+                leftRotate(parent); //左旋
+            }else {
+                rightRotate(parent);
+            }
+            parent.color = Color.RED; //父亲变红
+            sibling.color = Color.BLACK; //兄弟变黑
+            fixDoubleBlack(x); //递归调用  此时兄弟就是黑色的了
+            return;
+        }
+
+        if (sibling != null){
+            //case2 被调整节点为黑色  两个侄子都是黑色
+            if (isBlack(sibling.left) && isBlack(sibling.right)){
+                sibling.color = Color.RED; //兄弟变红
+                if (isRed(parent)){
+                    parent.color = Color.BLACK;  //父亲是红  则变黑
+                }else {
+                    fixDoubleBlack(parent);   //父亲是黑  则还是少黑  再次触发双黑
+                }
+            }
+            //case3 兄弟是黑色  值有红色
+            else {
+                //LL
+                if (sibling.isLeftChild() && isRed(sibling.left)){
+                    rightRotate(parent);
+                    sibling.left.color = Color.BLACK;
+                    sibling.color = parent.color;
+                }
+                //LR
+                else if (sibling.isLeftChild() && isRed(sibling.right)){
+                    sibling.right.color = parent.color; //先变色
+                    leftRotate(sibling);
+                    rightRotate(parent);
+                }
+                //RL
+                else if (!sibling.isLeftChild() && isRed(sibling.left)){
+                    sibling.left.color = parent.color;
+                    rightRotate(sibling);
+                    leftRotate(parent);
+                }
+                //RR
+                else {
+                    leftRotate(parent);
+                    sibling.right.color = Color.BLACK;
+                    sibling.color = parent.color;
+                }
+                parent.color = Color.BLACK;  //最终parent都要变成黑色
+            }
+        }else {
+            fixDoubleBlack(parent);
+        }
     }
 
     /**
@@ -328,5 +426,4 @@ public class RedBlackTree {
             return s;  //返回后继节点  为⭐李代桃僵替换方法做准备
         }
     }
-
 }
