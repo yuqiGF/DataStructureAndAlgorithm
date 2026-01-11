@@ -58,8 +58,67 @@ public class BTree {
 
         //向指定索引插入child
         void insertChild(Node child , int index){
-            System.arraycopy(children,index,children,index + 1,children.length - index);  //向后拷贝一位
+            System.arraycopy(children, index, children, index + 1, keyNumber + 1 - index);
             children[index] = child;
+        }
+
+        //移除指定index处的key
+        int removeKey(int index){
+            int t = keys[index];
+            System.arraycopy(keys,index + 1 , keys, index , --keyNumber - index);
+            return t;
+        }
+
+        //删除左边的key
+        int removeLeftmostKey(){
+            return removeKey(0);
+        }
+
+        //删除最右边的key
+        int removeRightmostKey(){
+            return removeKey(keyNumber - 1);
+        }
+
+        //移除指定位置的child
+        Node removeChild(int index) {
+            Node removed = children[index];
+            System.arraycopy(children, index + 1, children, index, keyNumber + 1 - index - 1);
+            children[keyNumber] = null;
+            return removed;
+        }
+
+
+        //移除最左边的child
+        Node removeRightmostChild(){
+            return removeChild(keyNumber);
+        }
+
+        //移除最右边的child
+        Node removeLeftmostChild(){
+            return removeChild(0);
+        }
+
+        //index孩子处左边的兄弟
+        Node childLeftSibling(int index){
+            return index > 0 ? children[index - 1] : null;
+        }
+
+        //index孩子处右边的兄弟
+        Node childRightSibling(int index){
+            return index == keyNumber ? null : children[index + 1];
+        }
+
+        //复制当前所有的key和value到target中
+        void moveToTarget(Node target){
+            int start = target.keyNumber;
+            if (!leaf){ //非叶子的话复制child
+                for (int i = 0; i <= keyNumber ; i++) {
+                    target.children[start + i] = children[i];  //追加 不覆盖
+                }
+            }
+            for (int i = 0; i < keyNumber; i++) {
+                target.keys[target.keyNumber ++] = keys[i];
+            }
         }
     }
 
@@ -138,8 +197,8 @@ public class BTree {
         if (!left.leaf){  //如果不是叶子节点的话需要把孩子也一起拷贝过去
             System.arraycopy(left.children,t,right.children,0,t);  //孩子数比key数多一个
         }
-        right.keyNumber = t - 1;
-        left.keyNumber = t - 1;
+        right.keyNumber = t - 1;  //设置有效上限
+        left.keyNumber = t - 1;  //设置有效上限
         //2 中间的t-1处的节点插入到父节点中
         int mid = left.keys[t - 1];
         parent.insertKey(mid,index);
@@ -150,7 +209,93 @@ public class BTree {
     /**
      * 删除一个key
      */
+    public void remove(int key){
+        doRemove(root,key, null , 0);
+    }
 
+    //递归删除
+    private void doRemove(Node node , int key , Node parent , int index){
+        int i = 0;
+        while(i < node.keyNumber){
+            if (node.keys[i] >= key){
+                break;  //找到了
+            }
+            i ++;  //退出循环  在第i个孩子里继续查找
+        }
+        // i双重含义  待删除key索引   到第i个孩子中继续查找
+        if (node.leaf){
+            if (!found(node, key, i)){ //⭐case1 叶子 且没找到
+                return;
+            }else { //⭐case2 叶子 且找到了
+                node.removeKey(i);
+            }
+        }else {
+            if (!found(node, key, i)){ //⭐case3 非叶子 且没找到
+                doRemove(node.children[i] , key , node, i);  //到第i个孩子中查找
+            }else { //⭐case4 非叶子 且找到了
+                //找后继
+                Node s = node.children[i + 1]; //比它大的一个孩子
+                while(!s.leaf){ //非叶子
+                    s = s.children[0];  //继续从最左边的孩子里找
+                }
+                int sKey = s.keys[0];  //找到了
+                //替换待删除的key
+                node.keys[i] = sKey;
+                //删除后继key
+                doRemove(node.children[i + 1],sKey , node , i + 1);  //递归操作  相当于在子树中删除掉了后继的key
+            }
+        }
+        //删除完之后key小于下限
+        if (node.keyNumber < MIN_KEY_NUMBER){
+            //调整平衡  case5 case6
+            balance(parent,node,index);
+        }
+    }
 
+    //调整平衡   x是节点数不够的那个节点
+    private void balance(Node parent , Node x , int i){
+        //⭐case6 根节点
+        if (x == root){
+            if (root.keyNumber == 0 && root.children[0] != null){
+                root = root.children[0];  //删掉了根节点 换根即可
+            }
+        }
+        Node left = parent.childLeftSibling(i);  //左兄弟
+        Node right = parent.childRightSibling(i);  //右兄弟
+        if (left != null && left.keyNumber > MIN_KEY_NUMBER){
+            //⭐case5-1 左边富裕  右旋  （父节点中有一个去右边  左边的节点中有一个去到父节点）
+            x.insertKey(parent.keys[i - 1],0);  //把父节点中的前驱key旋转下来   被旋转的key恰好是本节点索引位置减一的值
+            if (!left.leaf){ //如果左边的兄弟右孩子的话
+                x.insertChild(left.removeRightmostChild(),0);  // 把最右边的孩子放到被调整的节点中的最左边
+            }
+            parent.keys[i - 1] = left.removeRightmostKey();  //左边兄弟最大的key旋转上去
+            return;
+        }
+        if (right != null && right.keyNumber > MIN_KEY_NUMBER){
+            //⭐case5-2 右边富裕  左旋
+            x.insertKey(parent.keys[i],x.keyNumber);  //父节点中的后继key旋转下来 插入到最右侧
+            if (!right.leaf){
+                x.insertChild(right.removeLeftmostChild(),x.keyNumber + 1);  //右兄弟的最小节点换爹
+            }
+            parent.keys[i] = right.removeLeftmostKey();  //右边兄弟的最小key转上去
+            return;
+        }
+        //⭐case5-3 两边都不够借  向左合并
+        if (left != null){
+            //向左兄弟合并
+            parent.removeChild(i);
+            left.insertKey(parent.removeKey(i - 1), left.keyNumber);  //被调整索引处减一  合并到左节点
+            x.moveToTarget(left);  //复制当前所有节点到target
+        }else {
+            //没有左兄弟就向自己合并  右兄弟不要了
+            parent.removeChild(i + 1); //把右边移除
+            x.insertKey(parent.removeKey(i),x.keyNumber);  //key下来   合并到自己的最右边
+            right.moveToTarget(x);
+        }
+    }
 
+    //判断是否找到了
+    private static boolean found(Node node, int key, int i) {
+        return i < node.keyNumber && node.keys[i] == key;
+    }
 }
