@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 /**
  * B树  一种更适合于存储的数据结构   可以有效缩短树高  减少磁盘io
- * 度：degree：树中节点孩子数
+ * 度：degree：树中节点孩子数  t
  * 阶：order：所有孩子节点数的最大值
  * 孩子数：ceil（m / 2） ~ m
  * 关键字数：ceil（m / 2） - 1 ~ m - 1
@@ -29,7 +29,7 @@ public class BTree {
             return Arrays.toString(Arrays.copyOfRange(keys,0,keyNumber));
         }
 
-        //辅助方法 多路查找
+        //辅助方法 多路查找 找key
         Node get(int key){
             int i = 0; //key指针  用来确定孩子的位置
             while(i < keyNumber){
@@ -92,13 +92,59 @@ public class BTree {
      * ⭐记得限制拆入的最大值  达到最大值后要进行分列split
      */
     public void put(int key){
-        doPut(root,key);
+        doPut(root,key,null,0);
     }
 
     //递归插入
-    private void doPut(Node node , int key){
+    private void doPut(Node node , int key , Node parent , int index){
+        int i = 0;
+        while(i < node.keyNumber){
+            if (node.keys[i] == key){
+                return;  //更新逻辑
+            }
+            if (node.keys[i] > key){
+                break;  //找到了
+            }
+            i ++;
+        }
+        if (node.leaf){
+            node.insertKey(key,i);  //插入
+        } else {
+            doPut(node.children[i],key,node,i); //递归插入
+        }
+        if (node.keyNumber == MAX_KEY_NUMBER){
+            split(node, parent, index);
+        }
+    }
 
-        //
+    /**
+     * 分裂   将该节点的key分为大中小三分（t以后的  t-1 t-1之前的） 中间的去到父节点中  然后右节点去新节点  左边的留下 （注意每个节点的最小度数为t）
+     * @param left 本节点
+     * @param parent 父节点
+     * @param index 分列节点在父节点中的索引位置    （child的索引和key的索引是挂钩的）
+     */
+    private void split(Node left , Node parent , int index){
+        if (parent == null){  //⭐特殊情况分列的是根节点的话需要创建一个新的根  把原来的根拷贝进去作为parent
+            Node newRoot = new Node(t);
+            newRoot.leaf = false; //不再是叶子节点了
+            newRoot.insertChild(left,0);
+            this.root = newRoot;
+            parent = newRoot;
+        }
+        //1 创建right节点  然后叭left中t之后的key和child移动过去
+        Node right = new Node(t);  //右节点
+        right.leaf = left.leaf;  //分列前是非叶子  分裂后也是非叶子
+        System.arraycopy(left.keys,t,right.keys,0,t - 1);  //将一般的元素个数拷贝到right中
+        if (!left.leaf){  //如果不是叶子节点的话需要把孩子也一起拷贝过去
+            System.arraycopy(left.children,t,right.children,0,t);  //孩子数比key数多一个
+        }
+        right.keyNumber = t - 1;
+        left.keyNumber = t - 1;
+        //2 中间的t-1处的节点插入到父节点中
+        int mid = left.keys[t - 1];
+        parent.insertKey(mid,index);
+        //3 right节点作为父节点的孩子插入到index + 1处
+        parent.insertChild(right,index + 1);
     }
 
     /**
