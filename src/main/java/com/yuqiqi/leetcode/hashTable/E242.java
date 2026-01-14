@@ -34,32 +34,26 @@ public class E242 {
     }
 
     //优化  位图  字符串转化为26个字母的数组 保存每个字母出现的次数    然后把字符串全部转化为位图 再去比较就好了
-    static class ArrayKey{
-        int[] key = new int[26];
-        //IDEA自动生成equals和hashcode方法
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            ArrayKey arrayKey = (ArrayKey) o;
-            return Objects.deepEquals(key, arrayKey.key);
-        }
-
-        @Override
-        public int hashCode() {
-            return Arrays.hashCode(key);
-        }
-        //构造方法  将字符串转化为 位图数组
-        public ArrayKey(String str) {
-            for (int i = 0; i < str.length(); i++) {
-                char c =  str.charAt(i);
-                key[c-'a']++;  //对应位置的值增加
-            }
-        }
-    }
     public boolean isAnagram2(String s, String t){
-        HashMap<ArrayKey, Integer> map = new HashMap<>();
-        return new ArrayKey(s).equals(new ArrayKey(t));
+        return Arrays.equals(getKey(s),getKey(t));
+    }
+
+    private int[] getKey(String s){
+        int[] key = new int[26]; //26个字母的位图
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            key[c-'a'] ++;
+        }
+        return key;
+    }
+
+    private int[] getKey2(String s){
+        int[] key = new int[26]; //26个字母的位图
+        char[] chars = s.toCharArray();   //变成数组时候再去逐个转化   效率会更高  （JVM对数组的遍历有优化  局部性原理）
+        for (char c : chars) {
+            key[c - 'a'] ++;
+        }
+        return key;
     }
 
 }
