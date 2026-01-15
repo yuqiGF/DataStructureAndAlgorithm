@@ -6,7 +6,7 @@ package com.yuqiqi.algorithm.sort;
  * -治 当数据仅剩一个时可以认为是有序的
  * -合 两个有序的结果进行合并
  */
-public class MargeSort {
+public class MargeSortTopDown {
     public static void sort(int[] a){
         int[] a2 = new int[a.length];  //辅助数组
         split(a,0,a.length - 1,a2);
