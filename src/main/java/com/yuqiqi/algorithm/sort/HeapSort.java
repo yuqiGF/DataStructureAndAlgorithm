@@ -3,7 +3,7 @@ package com.yuqiqi.algorithm.sort;
 import com.yuqiqi.dataStructure.heap.MaxHeap;
 
 /**
- * 堆排顺    ⭐建立大顶堆  （线性数组存储非线性的完全二叉树）
+ * 堆排顺    ⭐建立大顶堆  （线性数组存储非线性的完全二叉树）  n log n
  * ⭐不断将堆顶与堆底元素交换，然后堆的大小减一 隔离出最大的那个数，然会堆顶下潜，
  * 不断重复上一步，继续交换，直到堆中元素为1.这样原本的数组就是排好序的了
  */
