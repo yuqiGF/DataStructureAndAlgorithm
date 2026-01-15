@@ -3,6 +3,7 @@ package com.yuqiqi.algorithm.sort;
 /**
  * 希尔排序   简单的说就是分组实现插入排序   每组元素之间的间隔成为gap   每轮排序后gap逐渐缩小  直至gap为1完成排序
  * ⭐其实就是对插入排序的一个优化  让插入排序的交换次数变少了（gap为1时就和插入排序完全一样）
+ * n log n
  */
 public class ShellSort {
     public static void sort(int[] a){
