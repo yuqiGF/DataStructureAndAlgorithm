@@ -48,6 +48,7 @@ public class QuickSortHandleDuplicate {
             }
         }
         swap(a,left,j);
+        return j;
     }
 
     private static void swap(int[] a, int i, int j) {
