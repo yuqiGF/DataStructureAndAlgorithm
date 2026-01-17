@@ -4,7 +4,7 @@ package com.yuqiqi.algorithm.sort;
  * 插入排序   每次从未排序区取一个元素  插入到已排序区    ⭐稳定 n^2
  */
 public class InsertionSort {
-    private static void insertion(int[] a,int low){
+    public static void sort(int[] a,int low){
         if (low == a.length){ //已经排到了最右边  最后的位置
             return;
         }
@@ -20,7 +20,7 @@ public class InsertionSort {
             a[i + 1] = t; //把要排的元素插入到找到的位置
         }
         //递归
-        insertion(a,low + 1);  //递归的时候输入当前待排序位置的下一个位置 进行排序
+        sort(a,low + 1);  //递归的时候输入当前待排序位置的下一个位置 进行排序
     }
 
 
