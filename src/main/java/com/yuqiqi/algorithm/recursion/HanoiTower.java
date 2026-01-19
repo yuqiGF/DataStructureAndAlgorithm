@@ -54,7 +54,7 @@ public class HanoiTower {
         }
         //2、要实现最后一步 就需要把a上的其他元素都移动到b    这个时候就变成了a借助c移动到b  递归调用即可
         move(n - 1,a,c,b);
-        //1、先看中间一步 a 移动到 c
+        //1、先看中间一步 a 移动到 c 喵
         c.addLast(a.removeLast());
         print();
         //3、最后把b上的元素借助a移动到c
