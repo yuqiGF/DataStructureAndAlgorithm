@@ -1,10 +1,10 @@
 package com.yuqiqi.dataStructure.graph;
 
 /**
- * 边
+ * 边  邻接链表实现
  */
 public class Edge {
-    Vertex linked;  //顶点
+    Vertex linked;  //顶点（边上的另一个节点）
     int weight; //权重
 
     public Edge(Vertex linked) {
