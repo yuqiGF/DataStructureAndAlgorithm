@@ -1,6 +1,7 @@
 package com.yuqiqi.dataStructure.graph;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 顶点    邻接表实现  每个节点后面跟着它的邻接链表  如A->B->C   B->D->C这种 ⭐此时它的边不是单独的边，而是独属于这个节点的边，只连接与这个节点相连的节点
@@ -22,5 +23,18 @@ public class Vertex {
 
     public String getName(){
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Vertex vertex = (Vertex) o;
+        return Objects.equals(name, vertex.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(name);
     }
 }
