@@ -1,4 +1,7 @@
-package com.yuqiqi.dataStructure.graph;
+package com.yuqiqi.dataStructure.graph.traversal;
+
+import com.yuqiqi.dataStructure.graph.Edge;
+import com.yuqiqi.dataStructure.graph.Vertex;
 
 import java.util.LinkedList;
 
