@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 /**
  * ⭐弗洛伊德最短路径算法   可以计算任意节点到任意节点的最短路径   关键是二维数组和借用⭐
  *  二维数组 表示横坐标到达纵坐标的路径距离 到不了就是无穷大， 循环判断n次（有几个顶点就循环几次） 看这个点能否通过另一个点到达另外的一个点 且距离较小 则更新数组中的元素值
+ *  ⭐最后检查对角线的元素是否为0  比0小的话就表示出现了负环
  */
 public class FloydWarshall {
     public static void floydWarshall(List<Vertex> graph){
