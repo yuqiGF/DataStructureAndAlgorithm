@@ -1,6 +1,6 @@
 package com.yuqiqi.leetcode.heap;
 
-import com.yuqiqi.dataStructure.heap.MinHeap;
+import com.yuqiqi.datastructure.heap.MinHeap;
 
 /**
  * 从数据流中返回第k大的元素

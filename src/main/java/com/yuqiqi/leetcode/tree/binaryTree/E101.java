@@ -1,6 +1,6 @@
 package com.yuqiqi.leetcode.tree.binaryTree;
 
-import com.yuqiqi.dataStructure.tree.TreeNode;
+import com.yuqiqi.datastructure.tree.TreeNode;
 
 /**
  * 对称二叉树  递归  传入的时连个节点

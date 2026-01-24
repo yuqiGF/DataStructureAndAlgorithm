@@ -1,7 +1,7 @@
 package com.yuqiqi.leetcode.queue.simple;
 
-import com.yuqiqi.dataStructure.tree.TreeNode;
-import com.yuqiqi.dataStructure.queue.simple.LinkedListQueue;
+import com.yuqiqi.datastructure.tree.TreeNode;
+import com.yuqiqi.datastructure.queue.simple.LinkedListQueue;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

@@ -1,6 +1,6 @@
 package com.yuqiqi.leetcode.tree.binarySearchTree;
 
-import com.yuqiqi.dataStructure.tree.TreeNode;
+import com.yuqiqi.datastructure.tree.TreeNode;
 
 /**
  * 二叉搜素树查找   给定二叉搜索树（BST）的根节点 root 和一个整数值 val。

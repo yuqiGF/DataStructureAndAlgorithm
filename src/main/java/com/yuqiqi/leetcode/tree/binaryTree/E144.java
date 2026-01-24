@@ -3,7 +3,7 @@ package com.yuqiqi.leetcode.tree.binaryTree;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import com.yuqiqi.dataStructure.tree.TreeNode;
+import com.yuqiqi.datastructure.tree.TreeNode;
 
 /**
  * 二叉树前序遍历

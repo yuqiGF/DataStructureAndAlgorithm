@@ -1,6 +1,6 @@
 package com.yuqiqi.algorithm.binarysearch;
 
-import com.yuqiqi.dataStructure.linkedList.SinglyLinkedList;
+import com.yuqiqi.datastructure.linkedlist.SinglyLinkedList;
 import org.junit.jupiter.api.Test;
 
 class SinglyLinkedListTest {

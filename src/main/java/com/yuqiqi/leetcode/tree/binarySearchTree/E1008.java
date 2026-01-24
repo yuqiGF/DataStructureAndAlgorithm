@@ -1,6 +1,6 @@
 package com.yuqiqi.leetcode.tree.binarySearchTree;
 
-import com.yuqiqi.dataStructure.tree.TreeNode;
+import com.yuqiqi.datastructure.tree.TreeNode;
 
 /**
  * 前序遍历构建二叉搜索树   给定一个整数数组，它表示BST(即 二叉搜索树 )的 先序遍历 ，构造树并返回其根。

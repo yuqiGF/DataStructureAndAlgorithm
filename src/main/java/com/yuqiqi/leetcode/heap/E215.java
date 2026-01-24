@@ -1,6 +1,6 @@
 package com.yuqiqi.leetcode.heap;
 
-import com.yuqiqi.dataStructure.heap.MinHeap;
+import com.yuqiqi.datastructure.heap.MinHeap;
 
 /**
  * 数组中的第k个最大元素   给定整数数组 nums 和整数 k，请返回数组中第 k 个最大的元素。

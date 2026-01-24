@@ -1,6 +1,6 @@
 package com.yuqiqi.algorithm.sort;
 
-import com.yuqiqi.dataStructure.heap.MaxHeap;
+import com.yuqiqi.datastructure.heap.MaxHeap;
 
 /**
  * 堆排顺    ⭐建立大顶堆  （线性数组存储非线性的完全二叉树）  n log n

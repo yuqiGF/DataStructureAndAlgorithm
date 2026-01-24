@@ -1,6 +1,6 @@
 package com.yuqiqi.leetcode.tree.binaryTree;
 
-import com.yuqiqi.dataStructure.tree.TreeNode;
+import com.yuqiqi.datastructure.tree.TreeNode;
 
 import java.util.LinkedList;
 
