@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class Dijkstra {
     /**
-     * 迪杰斯特拉算法
+     * 迪杰斯特拉算法    本质上是贪心⭐
      * @param graph 图
      * @param source 起始顶点
      */

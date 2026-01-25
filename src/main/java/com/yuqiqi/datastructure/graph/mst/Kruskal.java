@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.PriorityQueue;
 
 /**
- * 最小生成树  克鲁斯卡尔算法
+ * 最小生成树  克鲁斯卡尔算法   本质上是贪心
  * 先把边排个序  由小到大按照权重处理
  */
 public class Kruskal {
