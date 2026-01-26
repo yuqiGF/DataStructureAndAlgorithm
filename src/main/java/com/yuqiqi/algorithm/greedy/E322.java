@@ -1,4 +1,4 @@
-package com.yuqiqi.leetcode.greedy;
+package com.yuqiqi.algorithm.greedy;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,10 +18,10 @@ public class E322 {
         return min;
     }
     /**
-     * 暴力递归  （出大问题  时间复杂度爆炸 而且还是错的）
+     * 暴力递归  （出大问题  时间复杂度爆炸 而且还是错的）  0.0
      */
     public static void rec(int index , int[] coins , int remains , AtomicInteger count){
-        count.incrementAndGet();  //count自增  进入递归的时候增大 用于计数
+        count.incrementAndGet();  //count自增  进入递归的时候增大 用于计数  0.0
         //剩余数量大于0
         if (remains > 0){
             for (int i = index; i < coins.length; i++) {

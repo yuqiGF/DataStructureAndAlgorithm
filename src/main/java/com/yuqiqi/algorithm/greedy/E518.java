@@ -1,4 +1,4 @@
-package com.yuqiqi.leetcode.greedy;
+package com.yuqiqi.algorithm.greedy;
 
 import java.util.Arrays;
 import java.util.Collections;
