@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.PriorityQueue;
 
 /**
- * 哈夫曼树及其编码   （满二叉树）
+ * 哈夫曼树及其编码   （满二叉树）  贪心（每次取频率最低的）+前缀编码+二叉树+优先队列
  */
 public class HuffmanTree {
     /**
