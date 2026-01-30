@@ -50,6 +50,7 @@ public class Knapsack {
          *           dp[i][j] = dp[i-1][j]
          * }else{
          *           dp[i][j] = max(dp[i-1][j],item.value + dp[i - 1][j - item.weight])  本身的价值和新放入的价值求和取一个最大值
+         *           ⭐这里本身这个物品拿完了
          *       }
          */
         //处理第一行数据   填满
