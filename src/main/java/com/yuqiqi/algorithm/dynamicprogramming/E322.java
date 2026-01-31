@@ -10,7 +10,7 @@ import java.util.Arrays;
  */
 public class E322 {
     public static int coinChange(int[] coins, int amount){
-        int[][] dp = new int[coins.length][amount + 1];  //动态规划数组
+        int[][] dp = new int[coins.length][amount + 1];  //动态规划数组   ⭐可降维 把第一个为维度去掉  然后在同一行里面搞
         if (amount == 0){
             return 0;
         }
@@ -37,6 +37,21 @@ public class E322 {
 
         //拿最后一个值判断
         return dp[coins.length - 1][amount] > amount ? -1 : dp[coins.length - 1][amount];
+    }
+
+    //降维 优化 ⭐ 直接把第一个维度去掉就行了
+    public static int coinChange2(int[] coins, int amount){
+        int[] dp = new int[amount + 1];  //动态规划数组   ⭐可降维 把第一个为维度去掉  然后在同一行里面搞
+        //处理第一行   ⭐可以优化为直接填充为最大值  但是第一个数是0不变
+        Arrays.fill(dp,amount + 1);
+        dp[0] = 0;
+        for (int coin : coins) {
+            for (int j = coin; j < amount + 1; j++) {  //直接从coin开始循环⭐ 免得判断
+                dp[j] = Math.min(dp[j], dp[j - coin] + 1);  //需要最少硬币数
+            }
+        }
+        //拿最后一个值判断
+        return dp[amount] > amount ? -1 : dp[amount];
     }
 
     public static void main(String[] args) {
