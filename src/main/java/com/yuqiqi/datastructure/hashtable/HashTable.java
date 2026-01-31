@@ -105,7 +105,7 @@ public class HashTable {
                 Entry aHead = null;
                 Entry bHead = null;
                 while(p != null){
-                    if ((p.hash & table.length) == 0){
+                    if ((p.hash & table.length) == 0){  //⭐拆分规则
                         //分配到 a 链表
                         if (a != null){
                             a.next = p;  //接到a指针的后面   连上
@@ -223,9 +223,5 @@ public class HashTable {
 能否不用2的n次方作为数组容量：  可以  也能用质数   质数的分散性好一点    但是求余数效率不高（不能用位运算来优化）
 jdk中的hashMap在链表长度过长（超过8 且数组长度超过64时）的时候会转化为红黑树是为什么：  ⭐主要是防止有心人攻击，一般20万的数据都只会产生长度为6的链表  其他都通过数组扩容分散开了    一般长度都不会超过6
  */
-
-
-
-
 
 }

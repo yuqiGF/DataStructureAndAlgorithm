@@ -47,6 +47,5 @@ public class E62 {
 
     public static void main(String[] args) {
         System.out.println(uniquePaths2(3, 7));
-
     }
 }
