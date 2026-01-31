@@ -33,8 +33,27 @@ public class LCSubstring {
         return sum;
     }
 
+    static int lcs2(String a , String b){
+        int[][] dp = new int[a.length() + 1][b.length() + 1];
+        int sum = 0;  //记录总数
+        for (int i = 1; i < a.length() + 1; i++) {
+            for (int j = 1; j < b.length() + 1; j++) {
+                if (a.charAt(i - 1) == b.charAt(j - 1)){
+                    dp[i][j] = dp[i - 1][j - 1] + 1;
+                    if (dp[i][j] > sum){
+                        sum = dp[i][j];
+                    }
+                }else {
+                    dp[i][j] = 0;
+                }
+            }
+        }
+        return sum;
+    }
+
+
     public static void main(String[] args) {
-        System.out.println(lcs("yuqiqi", "yuqi"));
+        System.out.println(lcs2("yuqiqi", "yuqi"));
         String a = "yuqiqi";
     }
 
