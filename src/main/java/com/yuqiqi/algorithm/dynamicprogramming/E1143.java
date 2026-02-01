@@ -28,6 +28,6 @@ public class E1143 {
     }
 
     public static void main(String[] args) {
-        longestCommonSubsequence("abcde","ace");
+        System.out.println(longestCommonSubsequence("abcde", "ace"));
     }
 }
