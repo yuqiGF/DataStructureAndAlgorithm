@@ -135,7 +135,6 @@ public class HashTable {
                 }
             }
         }
-
         table = newTable;  //更新table
         threshold = (int) (loadFactor * table.length);  //更新阈值
     }
