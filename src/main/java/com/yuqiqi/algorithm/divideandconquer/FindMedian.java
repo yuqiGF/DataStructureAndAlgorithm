@@ -3,14 +3,26 @@ package com.yuqiqi.algorithm.divideandconquer;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * 选择数组数第k大的元素   快速选择算法
+ * ⭐快速选择算法  找中位数
  */
-public class E215 {
-    public int findKthLargest(int[] nums, int k){
-        //由大到小排  需要快速选择算法做一个索引转换
-        return quick(nums,0,nums.length-1 , nums.length - k);
+public class FindMedian {
+
+    public static double find(int[] nums){
+        if (nums.length % 2 == 1){  //奇数
+            //找中间的
+            return quick(nums,0,nums.length - 1 , nums.length / 2);
+        }else {  //偶数
+            //找中间的俩 求平均数
+            return (quick(nums, 0 , nums.length - 1 , nums.length / 2) +
+                    quick(nums, 0 , nums.length - 1 , nums.length / 2 - 1))/2.0;
+        }
     }
 
+    public static void main(String[] args) {
+        System.out.println(find(new int[]{1, 2, 3, 4}));
+    }
+
+    //快速选择算法选中间位置的元素
     public static int quick(int[] array , int left , int right , int i){
         int p = partition(array, left, right);
         if (p == i){
