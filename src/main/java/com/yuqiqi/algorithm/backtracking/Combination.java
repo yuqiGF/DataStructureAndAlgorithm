@@ -41,6 +41,9 @@ public class Combination {
             return;
         }
         for (int i = start; i <= n; i++) {
+            if (k - stack.size() > n - i + 1){
+                continue;   //剪枝  超过还剩下的所需个数时直接跳过
+            }
             stack.push(i);
             start = i + 1;  //从start + 1开始遍历  不能要自己
             dfs(n , k , start , stack , result);
