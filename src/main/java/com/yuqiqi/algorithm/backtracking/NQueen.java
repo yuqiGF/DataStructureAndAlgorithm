@@ -67,7 +67,7 @@ public class NQueen {
         for (int j = 0; j < n; j++) {
             //⭐遇到冲突 直接跳过
             if (ca[j] || cb[i + j] || cc[n - 1 - (i - j)]){
-                continue;
+                continue;  //剪枝
             }
             table[i][j] = 'Q' ;  //放入皇后
             ca[j] = cb[i + j] = cc[n - 1 - (i - j)] = true;  //更新列和斜线的冲突
