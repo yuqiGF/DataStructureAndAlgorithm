@@ -39,5 +39,4 @@ public class E167 {
         }
         return new int[]{};
     }
-
 }
