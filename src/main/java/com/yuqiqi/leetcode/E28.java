@@ -67,7 +67,7 @@ public class E28 {
      */
     private static int[] lps(char[] pattern) {
         int[] lps = new int[pattern.length];
-        int i = 0;
+        int i = 1;  //⭐⭐重点   错位匹配
         int j = 0;
         while (i < pattern.length){
             //遇到相同字符  记录j+1为共同前后缀长度  存到lps的i索引处  然后i++ j++
