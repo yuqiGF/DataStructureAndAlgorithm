@@ -1,6 +1,5 @@
-package com.yuqiqi.leetcode;
+package com.yuqiqi.leetcode.classic;
 
-import javax.xml.crypto.Data;
 import java.util.LinkedList;
 
 /**

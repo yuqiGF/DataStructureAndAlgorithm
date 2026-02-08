@@ -1,4 +1,4 @@
-package com.yuqiqi.leetcode;
+package com.yuqiqi.leetcode.classic;
 
 /**
  * 盛最多水的容器
