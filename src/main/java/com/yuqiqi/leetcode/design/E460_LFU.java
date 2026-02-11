@@ -13,7 +13,7 @@ import java.util.HashMap;
  * 当一个键首次插入到缓存中时，它的使用计数器被设置为 1 (由于 put 操作)。对缓存中的键执行 get 或 put 操作，使用计数器的值将会递增。
  * 函数 get 和 put 必须以 O(1) 的平均时间复杂度运行。
  */
-public class E460 {
+public class E460_LFU {
     //思路 两张哈希表+双向链表   ⭐一张哈希表存频次  一张哈希表存键     ⭐存频次的哈希表下面链上双向链表
     class LFUCache {
 
