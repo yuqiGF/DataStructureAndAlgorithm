@@ -15,7 +15,7 @@ public class E03 {
         HashMap<Character, Integer> map = new HashMap<>();
         int begin = 0;
         int res = 0;
-        for (int end = 0; end < s.length(); end++) {
+        for (int end = 0; end < s.length(                                       ); end++) {
             if (map.containsKey(s.charAt(end))){
                 begin = Math.max(begin,map.get(s.charAt(end)) + 1);  //更新begin为map中重复索引位置的后一个   //防回退机制⭐
             }
