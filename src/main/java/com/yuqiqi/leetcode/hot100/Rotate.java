@@ -3,7 +3,7 @@ package com.yuqiqi.leetcode.hot100;
 /**
  * 轮转数组   ⭐反转整个数组  然后反转前k个  然后反转后n-k个
  */
-public class rotate {
+public class Rotate {
     public void rotate(int[] nums, int k) {
         // //新数组索引替换
         // int[] res = new int[nums.length];
